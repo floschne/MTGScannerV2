@@ -1,0 +1,14 @@
+//
+// Created by p0w3r on 06.03.16.
+//
+
+#ifndef MTGSCANNERV2_CARDNAMEEXTRACTOR_H
+#define MTGSCANNERV2_CARDNAMEEXTRACTOR_H
+
+
+class CardNameExtractor {
+
+};
+
+
+#endif //MTGSCANNERV2_CARDNAMEEXTRACTOR_H

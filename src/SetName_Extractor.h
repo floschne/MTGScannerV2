@@ -1,0 +1,14 @@
+//
+// Created by p0w3r on 06.03.16.
+//
+
+#ifndef MTGSCANNERV2_SETNAMEEXTRACTOR_H
+#define MTGSCANNERV2_SETNAMEEXTRACTOR_H
+
+
+class SetNameExtractor {
+
+};
+
+
+#endif //MTGSCANNERV2_SETNAMEEXTRACTOR_H
