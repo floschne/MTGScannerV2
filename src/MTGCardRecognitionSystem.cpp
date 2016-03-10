@@ -11,22 +11,20 @@
 #include <iostream>
 
 
-int main(int /*argc*/, char** /*argv*/)
+int main(int argc, char** argv)
 {
-    static const char* names[] = { "./data/pic1.jpg", "./data/pic2.jpg", "./data/pic3.jpg",
-                                   "./data/pic4.jpg", 0 };
 
     cv::namedWindow( "originalImage", CV_WINDOW_AUTOSIZE);
     cv::namedWindow("detectedImage", CV_WINDOW_AUTOSIZE);
 
     CardDetector cd;
 
-    for( int i = 0; names[i] != 0; i++ )
+    for( uint i = 1; i < argc; i++ )
     {
-        cv::Mat image = cv::imread(names[i], 1);
+        cv::Mat image = cv::imread(argv[i], -1); //load image as it is (-1)
         if( image.empty() )
         {
-            std::cout << "Couldn't load " << names[i] << std::endl;
+            std::cout << "Couldn't load " << argv[i] << std::endl;
             continue;
         }
 
