@@ -5,8 +5,9 @@
 #ifndef MTGSCANNERV2_ROIEXTRACTOR_H
 #define MTGSCANNERV2_ROIEXTRACTOR_H
 
+#include "CRS_PipelineStage.h"
 
-class ROIExtractor {
+class ROIExtractor : public CRS_PipelineStage {
 
 };
 

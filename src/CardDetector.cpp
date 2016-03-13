@@ -9,6 +9,7 @@
 #include <opencv2/highgui.hpp>
 #include "CardDetector.h"
 
+
 CardDetector::CardDetector() {
     std::cout << "Card Detector Online" << std::endl;
 }
@@ -20,7 +21,10 @@ cv::Mat CardDetector::detectCard(const cv::Mat &img) {
 
         //convert to greyscale
         cv::cvtColor(img, workingImage, CV_BGR2GRAY);
-
+        //cv::subtract(cv::Scalar(255, 255, 255), workingImage, workingImage);
+        //cv::waitKey(0);
+        cv::namedWindow("blur", CV_WINDOW_AUTOSIZE);
+        cv::imshow("blur", workingImage);
 
         int lowThreshold = 1000;
         int ratio = 3;
@@ -47,60 +51,51 @@ cv::Mat CardDetector::detectCard(const cv::Mat &img) {
         //find the contours in the binary image
         cv::findContours(workingImage, contours, CV_RETR_EXTERNAL, CV_CHAIN_APPROX_SIMPLE);
 
-        //TODO approxPoly vergessen -> auf 4 eck testen ?!
 
-        //iterate over each contour and find the one with the largest area
-        int largestAreaIndex = 0;
-        double largestArea = 0.0;
+
         cv::Rect boundingRect = cv::Rect();
-        for (uint i = 0; i < contours.size(); i++) {
+        //iterate over each contour and find the one with the largest area
+        for (size_t i = 0; i < contours.size(); i++) {
             // The array for storing the approximation curve
             std::vector<cv::Point> approx;
             // Approximate contour with accuracy proportional
             // to the contour perimeter
+            double perimeter = cv::arcLength(cv::Mat(contours[i]), true);
             cv::approxPolyDP(
                     cv::Mat(contours[i]),
                     approx,
-                    cv::arcLength(cv::Mat(contours[i]), true) * 0.02,
+                    perimeter * 0.01,
                     true
             );
 
+            double area = cv::contourArea(contours[i]);
+            std::cout << "peri " << perimeter << " approx size " << approx.size() << " area " << area << std::endl;
             // Skip small or non-convex objects
-            if (std::fabs(cv::contourArea(contours[i])) < 100 || !cv::isContourConvex(approx))
+            if (area < 1000 || !cv::isContourConvex(approx)) {
                 continue;
-
-            if (approx.size()== 4) {
-                //calculate the area of the contour
-                double area = cv::contourArea(contours[i], false);
-                //if the area is larger than the largest set new largest and create bounding rect for the contour
-                if (area > largestArea) {
-                    largestArea = area;
-                    largestAreaIndex = i;
-                    boundingRect = cv::boundingRect(contours[i]);
-                    double aspectRatio = (double) boundingRect.width / boundingRect.height;
-
-                    double aspcetRatioDiff = std::fabs(aspectRatio - MTGCARD_ASPECT_RATIO);
-                    double areaDiff = std::fmod(area, MTG_CARD_AREA);
-
-                    std::cout << "ratDiff " << aspcetRatioDiff << " - areaDiff " << areaDiff << std::endl;
-
-                    //compare aspect ratios -> when their absolute diff is in treshholds -> detected card -> break loop
-                    if (aspcetRatioDiff <= ASPECT_RATIO_DIFFERENCE_TRESHHOLD) {
-                        //compare areas -> when their absolute diff is in treshholds -> detected card -> break loop
-                        if (areaDiff <= AREA_MODULO_TRESHHOLD) {
-                        }
-                        break;
-                    }
-                }
-
             }
 
+            //bounding rectangle
+            if (approx.size() == 4) {
+                //calculate the area of the contour
+                double area = cv::contourArea(contours[i], false);
+                //create the bounding rect
+                boundingRect = cv::boundingRect(contours[i]);
+                double aspectRatio = (double) boundingRect.width / boundingRect.height;
+                double aspectRatioDiff = std::fabs(aspectRatio - MTGCARD_ASPECT_RATIO);
 
+                std::cout << "ratDiff " << aspectRatioDiff << std::endl;
+
+                //compare aspect ratios -> when their absolute diff is in treshholds -> detected card -> break loop
+                if (aspectRatioDiff <= ASPECT_RATIO_DIFFERENCE_TRESHHOLD) {
+                    break;
+                }
+            }
         }
 
         //draw the bounding rectangle around the biggest contour and fill contour blue
-        cv::drawContours(resultImage, contours, largestAreaIndex, cv::Scalar(255, 0, 0), CV_FILLED);
-        //cv::rectangle(resultImage, boundingRect, cv::Scalar(0,255,0));
+        //cv::drawContours(resultImage, contours, largestAreaIndex, cv::Scalar(255, 0, 0), CV_FILLED);
+        cv::rectangle(resultImage, boundingRect, cv::Scalar(0, 255, 0), 3);
 
         cv::Mat cardRoI = resultImage.clone();
         cardRoI = resultImage(boundingRect);
