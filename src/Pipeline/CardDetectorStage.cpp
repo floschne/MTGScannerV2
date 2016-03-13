@@ -5,6 +5,10 @@
 #include <iostream>
 #include "CardDetectorStage.h"
 
+//singleton global ptr initialization - The pointer is being
+// allocated - not the object itself.
+CardDetectorStage* CardDetectorStage::_instance = nullptr;
+
 CardDetectorStage *CardDetectorStage::getInstance() {
     if (!_instance)
         _instance = new CardDetectorStage();

@@ -5,6 +5,10 @@
 #include <iostream>
 #include "SetNameExtractorStage.h"
 
+//singleton global ptr initialization - The pointer is being
+// allocated - not the object itself.
+SetNameExtractorStage* SetNameExtractorStage::_instance = nullptr;
+
 SetNameExtractorStage *SetNameExtractorStage::getInstance() {
     if (!_instance)
         _instance = new SetNameExtractorStage();

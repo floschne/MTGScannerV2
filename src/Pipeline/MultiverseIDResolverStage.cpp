@@ -5,6 +5,10 @@
 #include <iostream>
 #include "MultiverseIDResolverStage.h"
 
+//singleton global ptr initialization - The pointer is being
+// allocated - not the object itself.
+MultiverseIDResolverStage* MultiverseIDResolverStage::_instance = nullptr;
+
 MultiverseIDResolverStage *MultiverseIDResolverStage::getInstance() {
     if (!_instance)
         _instance = new MultiverseIDResolverStage();

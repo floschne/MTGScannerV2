@@ -14,11 +14,11 @@ template<class InputBufferType, class OutputBufferType>
 class CRSPipeline_Stage {
 
 public:
-    CRSPipeline_Stage();
-    virtual ~CRSPipeline_Stage();
-
     //for multithreading (to put a class as parameter for std::thread)
     void operator()();
+
+    void setInputBuffer(CRSPipeline_DataBuffer<InputBufferType>* inBuf);
+    void setOutputBuffer(CRSPipeline_DataBuffer<InputBufferType>* outBuf);
 
 protected:
 
@@ -26,7 +26,7 @@ protected:
     virtual void run() = 0;
 
     /*
-     * Pointer to Input and Output FIFO Buffers
+     * Pointer to Input and Output FIFO Buffers -> managed by Pipeline Controller (do not delete in dtor)
      */
     CRSPipeline_DataBuffer<InputBufferType>* _inputBuffer;
     CRSPipeline_DataBuffer<OutputBufferType>* _outputBuffer;

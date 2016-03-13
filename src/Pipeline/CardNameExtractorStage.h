@@ -17,7 +17,7 @@ public:
 private:
     static CardNameExtractorStage* _instance;
     CardNameExtractorStage();
-    CardNameExtractorStage(const CardNameExtractorStage);
+    CardNameExtractorStage(const CardNameExtractorStage&);
 
     virtual void run();
 };

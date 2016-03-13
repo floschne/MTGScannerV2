@@ -5,7 +5,7 @@
 #include "CRSPipeline_DataBuffer.h"
 
 template <class T>
-T*CRSPipeline_DataBuffer::pop() {
+T* CRSPipeline_DataBuffer<T>::pop() {
     // the access to this function is mutually exclusive
     std::lock_guard<std::mutex> guard(_lock);
     //get first item of queue
@@ -17,13 +17,13 @@ T*CRSPipeline_DataBuffer::pop() {
 }
 
 template <class T>
-void CRSPipeline_DataBuffer::push(T& item) {
+void CRSPipeline_DataBuffer<T>::push(T& item) {
     // the access to this function is mutually exclusive
     std::lock_guard<std::mutex> guard(_lock);
     _buffer.push(item);
 }
 
 template <class T>
-CRSPipeline_DataBuffer::CRSPipeline_DataBuffer() : _buffer(std::queue<T>()) {
+CRSPipeline_DataBuffer<T>::CRSPipeline_DataBuffer() : _buffer(std::queue<T>()) {
 
 }

@@ -5,6 +5,11 @@
 #include <iostream>
 #include "ROIExtractorStage.h"
 
+
+//singleton global ptr initialization - The pointer is being
+// allocated - not the object itself.
+ROIExtractorStage* ROIExtractorStage::_instance = nullptr;
+
 ROIExtractorStage *ROIExtractorStage::getInstance() {
     if (!_instance)
         _instance = new ROIExtractorStage();

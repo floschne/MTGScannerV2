@@ -5,7 +5,7 @@
 #ifndef CARDRECOGNITIONSYSTEM_CRSPIPELINESTAGEDATABUFFER_H
 #define CARDRECOGNITIONSYSTEM_CRSPIPELINESTAGEDATABUFFER_H
 
-#include <bits/stl_queue.h>
+#include <queue>
 #include <mutex>
 
 template <class T>

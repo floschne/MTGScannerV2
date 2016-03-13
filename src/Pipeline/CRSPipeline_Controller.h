@@ -25,22 +25,22 @@ private:
     /*
      * Stages of the Pipeline
      */
-    CardDetectorStage _cardDetectorStage;
-    ROIExtractorStage _roiExtractorStage;
-    CardNameExtractorStage _cardNameExtractorStage;
-    SetNameExtractorStage _setNameExtractorStage;
-    MultiverseIDResolverStage _multiverseIDResolverStage;
+    CardDetectorStage* _cardDetectorStage;
+    ROIExtractorStage* _roiExtractorStage;
+    CardNameExtractorStage* _cardNameExtractorStage;
+    SetNameExtractorStage* _setNameExtractorStage;
+    MultiverseIDResolverStage* _multiverseIDResolverStage;
 
     /*
-     * FIFO Buffers for the Pipeline Stages
+     * Pointer to FIFO Buffers for the Pipeline Stages
      */
-    CRSPipeline_DataBuffer<cv::Mat> _rawCardImage_FIFO;
-    CRSPipeline_DataBuffer<cv::Mat> _singleCardImage_FIFO;
-    CRSPipeline_DataBuffer<cv::Mat> _setNameROI_FIFO;
-    CRSPipeline_DataBuffer<cv::Mat> _cardNameROI_FIFO;
-    CRSPipeline_DataBuffer<std::string> _setNameString_FIFO;
-    CRSPipeline_DataBuffer<std::string> _cardNameString_FIFO;
-    CRSPipeline_DataBuffer<std::string> _multiverseIDString_FIFO;
+    CRSPipeline_DataBuffer<cv::Mat>* _rawCardImage_FIFO;
+    CRSPipeline_DataBuffer<cv::Mat>* _singleCardImage_FIFO;
+    CRSPipeline_DataBuffer<cv::Mat>* _setNameROI_FIFO;
+    CRSPipeline_DataBuffer<cv::Mat>* _cardNameROI_FIFO;
+    CRSPipeline_DataBuffer<std::string>* _setNameString_FIFO;
+    CRSPipeline_DataBuffer<std::string>* _cardNameString_FIFO;
+    CRSPipeline_DataBuffer<std::string>* _multiverseIDString_FIFO;
 };
 
 
