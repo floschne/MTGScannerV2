@@ -5,9 +5,20 @@
 #ifndef MTGSCANNERV2_SETNAMEEXTRACTOR_H
 #define MTGSCANNERV2_SETNAMEEXTRACTOR_H
 
+#include <opencv2/core/mat.hpp>
+#include "CRSPipeline_Stage.h"
 
-class SetNameExtractor {
+class SetNameExtractorStage : public CRSPipeline_Stage<cv::Mat, std::string> {
+public:
+    static SetNameExtractorStage* getInstance();
+    ~SetNameExtractorStage();
 
+private:
+    SetNameExtractorStage();
+    SetNameExtractorStage(const SetNameExtractorStage&);
+    static SetNameExtractorStage* _instance;
+
+    virtual void run();
 };
 
 

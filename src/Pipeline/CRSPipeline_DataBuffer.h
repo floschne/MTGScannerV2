@@ -9,10 +9,10 @@
 #include <mutex>
 
 template <class T>
-class CRSPipelineStageDataBuffer {
+class CRSPipeline_DataBuffer {
 
 public:
-    CRSPipelineStageDataBuffer();
+    CRSPipeline_DataBuffer();
 
     T* pop();
     void push(T& item);

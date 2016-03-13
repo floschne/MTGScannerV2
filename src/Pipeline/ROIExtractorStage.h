@@ -5,10 +5,20 @@
 #ifndef MTGSCANNERV2_ROIEXTRACTOR_H
 #define MTGSCANNERV2_ROIEXTRACTOR_H
 
-#include "CRS_PipelineStage.h"
+#include <opencv2/core/mat.hpp>
+#include "CRSPipeline_Stage.h"
 
-class ROIExtractor : public CRS_PipelineStage {
+class ROIExtractorStage : public CRSPipeline_Stage<cv::Mat, cv::Mat> {
+public:
+    static ROIExtractorStage* getInstance();
+    ~ROIExtractorStage();
 
+private:
+    static ROIExtractorStage* _instance;
+    ROIExtractorStage();
+    ROIExtractorStage(const ROIExtractorStage&);
+
+    virtual void run();
 };
 
 

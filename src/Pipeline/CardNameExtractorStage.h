@@ -6,8 +6,20 @@
 #define MTGSCANNERV2_CARDNAMEEXTRACTOR_H
 
 
-class CardNameExtractor {
+#include <opencv2/core/mat.hpp>
+#include "CRSPipeline_Stage.h"
 
+class CardNameExtractorStage : public CRSPipeline_Stage<cv::Mat, std::string> {
+public:
+    static CardNameExtractorStage* getInstance();
+    ~CardNameExtractorStage();
+
+private:
+    static CardNameExtractorStage* _instance;
+    CardNameExtractorStage();
+    CardNameExtractorStage(const CardNameExtractorStage);
+
+    virtual void run();
 };
 
 

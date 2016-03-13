@@ -5,6 +5,6 @@
 #include "CRSPipeline_Stage.h"
 
 
-void CRSPipelineStage::operator()() {
+void CRSPipeline_Stage::operator()() {
     this->run();
 }

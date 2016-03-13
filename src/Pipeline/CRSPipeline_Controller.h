@@ -12,15 +12,15 @@
 #include "SetNameExtractorStage.h"
 #include "MultiverseIDResolverStage.h"
 
-class CRSPipeline {
+class CRSPipeline_Controller {
 public:
-    static CRSPipeline* getInstance();
-    ~CRSPipeline();
+    static CRSPipeline_Controller * getInstance();
+    ~CRSPipeline_Controller();
 
 private:
-    static CRSPipeline* _instance;
-    CRSPipeline(); //only instantiate via getInstance!
-    CRSPipeline(const CRSPipeline&); //no copy con!
+    static CRSPipeline_Controller * _instance;
+    CRSPipeline_Controller(); //only instantiate via getInstance!
+    CRSPipeline_Controller(const CRSPipeline_Controller &); //no copy con!
 
     /*
      * Stages of the Pipeline
@@ -32,15 +32,15 @@ private:
     MultiverseIDResolverStage _multiverseIDResolverStage;
 
     /*
-     * FIFO Buffers of the Pipeline
+     * FIFO Buffers for the Pipeline Stages
      */
-    CRSPipelineStageDataBuffer<cv::Mat> _rawCardImage_FIFO;
-    CRSPipelineStageDataBuffer<cv::Mat> _singleCardImage_FIFO;
-    CRSPipelineStageDataBuffer<cv::Mat> _setNameROI_FIFO;
-    CRSPipelineStageDataBuffer<cv::Mat> _cardNameROI_FIFO;
-    CRSPipelineStageDataBuffer<std::string> _setNameString_FIFO;
-    CRSPipelineStageDataBuffer<std::string> _cardNameString_FIFO;
-    CRSPipelineStageDataBuffer<std::string> _multiverseIDString_FIFO;
+    CRSPipeline_DataBuffer<cv::Mat> _rawCardImage_FIFO;
+    CRSPipeline_DataBuffer<cv::Mat> _singleCardImage_FIFO;
+    CRSPipeline_DataBuffer<cv::Mat> _setNameROI_FIFO;
+    CRSPipeline_DataBuffer<cv::Mat> _cardNameROI_FIFO;
+    CRSPipeline_DataBuffer<std::string> _setNameString_FIFO;
+    CRSPipeline_DataBuffer<std::string> _cardNameString_FIFO;
+    CRSPipeline_DataBuffer<std::string> _multiverseIDString_FIFO;
 };
 
 

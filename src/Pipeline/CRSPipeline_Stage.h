@@ -5,18 +5,17 @@
 #ifndef MTGSCANNERV2_CRSPIPELINESTAGE_H
 #define MTGSCANNERV2_CRSPIPELINESTAGE_H
 
-#endif //MTGSCANNERV2_CRSPIPELINESTAGE_H
 
 #include <queue>
 #include <mutex>
-#include "CRSPipelineStageDataBuffer.h"
+#include "CRSPipeline_DataBuffer.h"
 
 template<class InputBufferType, class OutputBufferType>
-class CRSPipelineStage {
+class CRSPipeline_Stage {
 
 public:
-    CRSPipelineStage();
-    virtual ~CRSPipelineStage();
+    CRSPipeline_Stage();
+    virtual ~CRSPipeline_Stage();
 
     //for multithreading (to put a class as parameter for std::thread)
     void operator()();
@@ -29,7 +28,9 @@ protected:
     /*
      * Pointer to Input and Output FIFO Buffers
      */
-    CRSPipelineStageDataBuffer<InputBufferType>* _inputBuffer;
-    CRSPipelineStageDataBuffer<OutputBufferType>* _outputBuffer;
+    CRSPipeline_DataBuffer<InputBufferType>* _inputBuffer;
+    CRSPipeline_DataBuffer<OutputBufferType>* _outputBuffer;
 
 };
+
+#endif //MTGSCANNERV2_CRSPIPELINESTAGE_H

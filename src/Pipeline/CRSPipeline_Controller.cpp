@@ -5,19 +5,19 @@
 #include <iostream>
 #include "CRSPipeline_Controller.h"
 
-CRSPipeline *CRSPipeline::getInstance() {
+CRSPipeline_Controller *CRSPipeline_Controller::getInstance() {
     if (!_instance)
-        _instance = new CRSPipeline();
+        _instance = new CRSPipeline_Controller();
 
     return _instance;
 }
 
-CRSPipeline::~CRSPipeline() {
+CRSPipeline_Controller::~CRSPipeline_Controller() {
     std::cout << "Pipeline Offline!" << std::endl;
 
 }
 
-CRSPipeline::CRSPipeline() {
+CRSPipeline_Controller::CRSPipeline_Controller() {
 
     //instantiate stages
     _cardDetectorStage = *CardDetectorStage::getInstance();
