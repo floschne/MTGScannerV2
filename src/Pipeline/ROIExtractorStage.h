@@ -8,7 +8,7 @@
 #include <opencv2/core/mat.hpp>
 #include "CRSPipeline_Stage.h"
 
-class ROIExtractorStage : public CRSPipeline_Stage<cv::Mat, cv::Mat> {
+class ROIExtractorStage : public CRSPipeline_Stage<cv::Mat*, cv::Mat*> {
 public:
     static ROIExtractorStage* getInstance();
     ~ROIExtractorStage();

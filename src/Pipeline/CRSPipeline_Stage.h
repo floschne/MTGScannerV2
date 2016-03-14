@@ -18,7 +18,7 @@ public:
     void operator()();
 
     void setInputBuffer(CRSPipeline_DataBuffer<InputBufferType>* inBuf);
-    void setOutputBuffer(CRSPipeline_DataBuffer<InputBufferType>* outBuf);
+    void setOutputBuffer(CRSPipeline_DataBuffer<OutputBufferType>* outBuf);
 
 protected:
 

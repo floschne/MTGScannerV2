@@ -8,7 +8,7 @@
 #include <opencv2/core/mat.hpp>
 #include "CRSPipeline_Stage.h"
 
-class CardDetectorStage : public CRSPipeline_Stage<cv::Mat, cv::Mat> {
+class CardDetectorStage : public CRSPipeline_Stage<cv::Mat*, cv::Mat*> {
 public:
     static CardDetectorStage* getInstance();
     ~CardDetectorStage();

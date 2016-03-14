@@ -21,6 +21,7 @@ public:
 private:
     std::queue<T> _buffer;
     std::mutex _lock;
+    static uint8_t _id; //the id of the data buffers
 };
 
 

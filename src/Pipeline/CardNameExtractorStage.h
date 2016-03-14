@@ -9,7 +9,7 @@
 #include <opencv2/core/mat.hpp>
 #include "CRSPipeline_Stage.h"
 
-class CardNameExtractorStage : public CRSPipeline_Stage<cv::Mat, std::string> {
+class CardNameExtractorStage : public CRSPipeline_Stage<cv::Mat*, std::string> {
 public:
     static CardNameExtractorStage* getInstance();
     ~CardNameExtractorStage();
