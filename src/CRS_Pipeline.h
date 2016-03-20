@@ -1,0 +1,14 @@
+//
+// Created by p0w3r on 20.03.16.
+//
+
+#ifndef CARDRECOGNITIONSYSTEM_CRS_PIPELINE_H
+#define CARDRECOGNITIONSYSTEM_CRS_PIPELINE_H
+
+
+class CRS_Pipeline {
+
+};
+
+
+#endif //CARDRECOGNITIONSYSTEM_CRS_PIPELINE_H
